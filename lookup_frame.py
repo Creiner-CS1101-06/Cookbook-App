@@ -15,20 +15,20 @@ class LookupFrame(ttk.Frame):
 		self.recipes_dict = self.get_recipes()
 		self.desc_text = tk.StringVar()
 
-		self.name_label = ttk.Label(master= self, text= "Choose Recipe")
+		self.name_label = ttk.Label(master= self, text= "Choose Recipe", font= ("", 14))
 		names = list(self.recipes_dict.keys())
 		for i, name in enumerate(names):
 			names[i] = name.strip()
 		self.recipes_dropdown = ttk.Combobox(master= self, values= names, state= 'readonly')
-		self.desc_label = ttk.Label(master= self, textvariable = self.desc_text)
+		self.desc_label = ttk.Label(master= self, textvariable = self.desc_text, font= ("", 14))
 		self.refresh_button = ttk.Button(master= self, text= "Refresh List", command= self.refresh_list)
 
 		self.recipes_dropdown.bind("<<ComboboxSelected>>", self.display_recipe)
 
-		self.name_label.pack()
-		self.recipes_dropdown.pack()
-		self.desc_label.pack()
-		self.refresh_button.pack()
+		self.name_label.pack(pady= 10)
+		self.recipes_dropdown.pack(pady= 10)
+		self.desc_label.pack(pady= 10)
+		self.refresh_button.pack(pady= 10)
 
 	def get_recipes(self):
 		# TBD work in progress
@@ -59,4 +59,8 @@ class LookupFrame(ttk.Frame):
 		self.desc_text.set(description)
 
 	def refresh_list(self):
-		print("List refreshed")
+		self.recipes_dict = self.get_recipes() # gets new recipes dictionary
+		names = list(self.recipes_dict.keys())
+		for i, name in enumerate(names):
+			names[i] = name.strip()
+		self.recipes_dropdown.config(values= names)

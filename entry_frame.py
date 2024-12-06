@@ -9,19 +9,19 @@ class EntryFrame(ttk.Frame):
 		self.name_text = tk.StringVar()
 		self.status_text= tk.StringVar()
 
-		self.name_label = ttk.Label(master= self, text= "Name of Recipe")
+		self.name_label = ttk.Label(master= self, text= "Name of Recipe", font= ("", 14))
 		self.name_entry = ttk.Entry(master= self, textvariable= self.name_text)
-		self.desc_label = ttk.Label(master= self, text= "Instructions")
+		self.desc_label = ttk.Label(master= self, text= "Instructions", font= ("", 14))
 		self.desc_entry = ttk.Text(master= self, width= 30, height= 15)
 		self.add_button = ttk.Button(master= self, text= "Add Recipe", command= self.add_recipe)
 		self.status_label = ttk.Label(master= self, textvariable= self.status_text)
 
-		self.name_label.pack()
-		self.name_entry.pack()
-		self.desc_label.pack()
-		self.desc_entry.pack()
-		self.add_button.pack()
-		self.status_label.pack()
+		self.name_label.pack(pady= 10)
+		self.name_entry.pack(pady= 10)
+		self.desc_label.pack(pady= 10)
+		self.desc_entry.pack(pady= 10)
+		self.add_button.pack(pady= 10)
+		self.status_label.pack(pady= 10)
 
 	def add_recipe(self):
 		recipe_name = self.name_text.get() # grab the recipe name from the Tkinter Variable
